@@ -1,1 +1,1 @@
-
+A C# WPF vehicle inventory management application that allows users to add, edit, remove, and view cars and planes, calculate inventory statistics, and store vehicle data persistently using JSON files.
