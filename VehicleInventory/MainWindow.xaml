@@ -1,0 +1,168 @@
+﻿<Window x:Class="CarList.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:CarList"
+        mc:Ignorable="d"
+        Title="Car Inventory" WindowStartupLocation="CenterScreen" Height="470" Width="550" MinHeight="470" MinWidth="360" ResizeMode="CanResize">
+    
+        <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="20"/>
+            <RowDefinition/>
+            <RowDefinition Height="35"/>
+        </Grid.RowDefinitions>
+        <Menu Grid.Row="0">
+            <MenuItem Header="_File">
+                <MenuItem Header="E_xit" Click="ExitButton_Click"/>
+            </MenuItem>
+
+            <MenuItem Header="_Tools">
+                <MenuItem Header="Delete All" Click="RemoveAll_Click"/>
+            </MenuItem>
+
+            <MenuItem Header="_Help">
+                <MenuItem Header="_About" Click="HelpAboutMenu_Click"/>
+            </MenuItem>
+        </Menu>
+            <TabControl Grid.Row="1" SelectionChanged="TabChanged">
+            <TabItem x:Name="tabAddVehicle" Header="_Add Vehicle ">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="24*"/>
+                        <ColumnDefinition Width="155*"/>
+                        <ColumnDefinition Width="108*" />
+                        <ColumnDefinition Width="128*"/>
+                        <ColumnDefinition Width="128*" />
+
+                    </Grid.ColumnDefinitions>
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+
+                    <!-- Row 0 -->
+                    <RadioButton x:Name="radioCar" GroupName="VehicleType" Grid.Column="2" Content="_Car" ToolTip="Check if you are creating a car" HorizontalAlignment="Center" VerticalAlignment="Center" IsChecked="True" Height="15" Width="37" />
+                    <RadioButton x:Name="radioPlane" GroupName="VehicleType" Grid.Column="3" Content="_Plane" ToolTip="Check if you are creating a Plane" HorizontalAlignment="Center" VerticalAlignment="Center" Height="15" Width="48" Unchecked="PlaneChanged" Checked="PlaneChanged" />
+                    <Label Content="_Make:" Target="{Binding ElementName=ComboMake}" HorizontalAlignment="Left" VerticalAlignment="Center" Height="26" Width="42" Grid.Row="1" Grid.Column="1" Margin="45,0,0,0"/>
+                    <!--<TextBox x:Name="textMake" IsReadOnly="True" MinWidth="60" Grid.Row="0" Grid.Column="2"  Margin="5,5,5,5" ToolTip="Displays the make of the car." VerticalContentAlignment="Center"/>-->
+                    <ComboBox x:Name="ComboMake" Grid.Column="2" ToolTip="Select the make of the car" Grid.ColumnSpan="3" Margin="0,39,128,0" Grid.RowSpan="2">
+                        <ComboBoxItem>Mercedes</ComboBoxItem>
+                        <ComboBoxItem>Audi</ComboBoxItem>
+                        <ComboBoxItem>Volkswagen</ComboBoxItem>
+                        <ComboBoxItem>Honda</ComboBoxItem>
+                        <ComboBoxItem>Subaru</ComboBoxItem>
+                        <ComboBoxItem>Buick</ComboBoxItem>
+                        <ComboBoxItem>Toyota</ComboBoxItem>
+                        <ComboBoxItem>Nissan</ComboBoxItem>
+                        <ComboBoxItem>Mazda</ComboBoxItem>
+                        <ComboBoxItem>Suzuki</ComboBoxItem>
+                        <ComboBoxItem>Landrover</ComboBoxItem>
+                        <ComboBoxItem>Hyundai</ComboBoxItem>
+                        <ComboBoxItem>Tesla</ComboBoxItem>
+                        <ComboBoxItem>Boeing</ComboBoxItem>
+                        <ComboBoxItem>Airbus</ComboBoxItem>
+                        <ComboBoxItem>Bombardier</ComboBoxItem>
+
+                    </ComboBox>
+                    <!-- Row 1 -->
+                    <Label Content="M_odel:" Grid.Row="2" Target="{Binding ElementName=textModel}" HorizontalAlignment="Left" VerticalAlignment="Center" Height="26" Width="48" Grid.Column="1" Margin="42,0,0,0"/>
+                    <TextBox x:Name="textModel" MinWidth="60" Grid.Row="1" Grid.Column="2" ToolTip="Enter the model of the car" VerticalContentAlignment="Center" Grid.ColumnSpan="3" Margin="0,39,128,0" Grid.RowSpan="2"/>
+                    <!-- Row 2 -->
+                    <Label Content="_Year:" Grid.Row="3" Target="{Binding ElementName=ComboYear}" HorizontalAlignment="Left" VerticalAlignment="Center" Height="26" Width="34" Grid.Column="1" Margin="49,0,0,0"/>
+                    <!--<TextBox x:Name="textYear" IsReadOnly="True" MinWidth="60" Grid.Row="2" Grid.Column="2" Margin="5,5,5,5" ToolTip="Displays the year of the car" VerticalContentAlignment="Center"/>-->
+                    <ComboBox x:Name="ComboYear" Grid.Column="2"  ToolTip="Select the year of the car" Grid.Row="2" Grid.ColumnSpan="3" Margin="0,39,128,0" Grid.RowSpan="2"/>
+                    <!-- Row 3 -->
+                    <Label Content="_Price:" Grid.Row="4" Target="{Binding ElementName=textPrice}" HorizontalAlignment="Left" VerticalAlignment="Center" Height="26" Width="38" Grid.Column="1" Margin="47,0,0,0"/>
+                    <TextBox x:Name="textPrice" MinWidth="60" Grid.Row="3" Grid.Column="2"  ToolTip="Enter the price of the car" VerticalContentAlignment="Center" Grid.ColumnSpan="3" Margin="0,39,128,39" Grid.RowSpan="3"/>
+                    <Label Content="New:" Grid.Row="5" HorizontalAlignment="Left" VerticalAlignment="Center"  Height="27" Width="38" Grid.Column="1" Margin="47,0,0,0"/>
+                    <CheckBox x:Name="checkIsNew"  Grid.Column="2" Grid.Row="5" HorizontalAlignment="Left" ToolTip="Check if car is new" Width="16" VerticalAlignment="Center" Height="15"/>
+                    <Label x:Name="LabelCount" Content="E_ngine Count:" Grid.Row="6" HorizontalAlignment="Left" VerticalAlignment="Center" Height="26" Width="84" Visibility="Hidden" Grid.Column="1" Margin="24,0,0,0"/>
+                    <ComboBox Name="ComboEngineCount" Grid.Column="2" Grid.Row="6" Grid.ColumnSpan="3" Visibility="Hidden" ToolTip="Select number of engines of the plane" Margin="0,0,128,39" Grid.RowSpan="2">
+                        <ComboBoxItem>1</ComboBoxItem>
+                        <ComboBoxItem>2</ComboBoxItem>
+                        <ComboBoxItem>3</ComboBoxItem>
+                        <ComboBoxItem>4</ComboBoxItem>
+                        <ComboBoxItem>5</ComboBoxItem>
+                        <ComboBoxItem>6</ComboBoxItem>
+                    </ComboBox>
+                    <Label x:Name="LabelCargo" Content="_Cargo Capacity(Kg)" Grid.Column="0" Grid.Row="7" VerticalAlignment="Center" Height="26" Visibility="Hidden" Grid.ColumnSpan="3" Margin="0,0,108,0" />
+                    <TextBox x:Name="TextCapacity" Grid.Row="7" Grid.Column="2" Grid.ColumnSpan="3"  Grid.RowSpan="3" Visibility="Hidden" ToolTip="Enter the cargo capacity of the planein kilos" Margin="0,0,128,39"/>
+                    <Label x:Name="LabelSpan" Content="_Wings Span (M)" Grid.Row="8" Grid.Column="0" VerticalAlignment="Center" Height="26" Visibility="Hidden" Grid.ColumnSpan="3" Margin="0,0,108,0"/>
+                    <TextBox x:Name="TextSpan" Grid.Row="8" Grid.Column="2" Grid.ColumnSpan="3" Visibility="Hidden" ToolTip="Enter wings span of the plane in meters" Margin="0,0,128,39" Grid.RowSpan="2"/>
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Grid.ColumnSpan="3"  Grid.Row="9" Grid.Column="1" Width="252" Margin="27,0,0,0">
+                        <Button x:Name="EnterButton" Content="_Enter" MinWidth="70" Margin="7" ToolTip="Click to enter your car details" Click="EnterButton_Click" IsDefault="True"/>
+                        <Button x:Name="ResetButton" Content="_Reset" MinWidth="70" Margin="7" ToolTip="Click to reset car details" Click="ResetButton_Click"/>
+                        <Button x:Name="RemoveButton" Content="Re_move" MinWidth="70" Margin="7" ToolTip="Click to remove vehicle from list" Click="RemoveButton_Click"/>
+                    </StackPanel>
+                </Grid>
+            </TabItem>
+            <TabItem Header="View _Inventory" x:Name="tabViewInventory">
+
+                <ListView x:Name="displayCars" Margin="3" MinHeight="130" d:ItemsSource="{d:SampleData ItemCount=5}" SelectionChanged="displayCars_SelectionChanged" ToolTip="Displays list of car data user entered">
+                    <ListView.View>
+                        <!--https://learn.microsoft.com/en-us/dotnet/api/system.windows.controls.primitives.selector.selectionchanged?view=windowsdesktop-9.0-->
+                        <GridView>
+
+                            <GridViewColumn DisplayMemberBinding="{Binding NewStatus}" Width="40" Header="Type"/>
+                            <GridViewColumn DisplayMemberBinding="{Binding Identification}" Width="20" Header="ID"/>
+                            <GridViewColumn DisplayMemberBinding="{Binding Make}" Width="80" Header="Make"/>
+                            <GridViewColumn DisplayMemberBinding="{Binding Model}" Width="80" Header="Model"/>
+                            <GridViewColumn DisplayMemberBinding="{Binding Year}" Width="40" Header="Year"/>
+                            <GridViewColumn DisplayMemberBinding="{Binding Price}" Width="50" Header="Price"/>
+                            <GridViewColumn DisplayMemberBinding="{Binding EngineCount}" Width="50" Header="Engines"/>
+                            <GridViewColumn DisplayMemberBinding="{Binding CargoCapacity}" Width="75" Header="Cargo Space"/>
+                            <GridViewColumn DisplayMemberBinding="{Binding WingsSpan}" Width="75" Header="Wings span"/>
+
+
+                        </GridView>
+                    </ListView.View>
+                </ListView>
+            </TabItem>
+            <TabItem Header="_Statistics" x:Name="tabStatistics">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+
+
+                    </Grid.ColumnDefinitions>
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Label x:Name="VehicleTotal" Content="Total Vehicle:" Grid.Column="0" Grid.Row="0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="25"/>
+                    <TextBox x:Name="OutputTotalVehicle" IsEnabled="False" Grid.Column="1" Grid.Row="0" HorizontalAlignment="Stretch" VerticalAlignment="Center" FontSize="25" ToolTip="Displays total number of vehicles in inventory"/>
+                    <Label x:Name="CostTotal" Content="Total Cost:" Grid.Column="0" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="25"/>
+                    <TextBox x:Name="OutputCostTotal" IsEnabled="False" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Stretch" VerticalAlignment="Center" FontSize="25" ToolTip="Display total cost of all vehicles"/>
+                    <Label x:Name="CostAverage" Content="Average Cost:" Grid.Column="0" Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="25"/>
+                    <TextBox x:Name="OutputAverage" IsEnabled="False" Grid.Column="1" Grid.Row="2" HorizontalAlignment="Stretch" VerticalAlignment="Center" FontSize="25" ToolTip="Displays the average cost of all vehicles"/>
+                </Grid>
+            </TabItem>
+        </TabControl>
+
+        <!--https://learn.microsoft.com/en-us/dotnet/api/system.windows.controls.primitives.selector.selectionchanged?view=windowsdesktop-9.0-->
+
+
+
+        <StatusBar Grid.Row="2">
+            <StatusBarItem x:Name="CommentBox" Background="LightGray" MinHeight="30" ToolTip="Displays any comments" Height="6"  HorizontalAlignment="Stretch" Content="Welcome to the software!!" />
+        </StatusBar>
+
+
+
+
+    </Grid>
+</Window>
