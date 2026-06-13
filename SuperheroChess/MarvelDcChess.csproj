@@ -1,0 +1,43 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net8.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <UseWPF>true</UseWPF>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Images\batman.png" />
+    <None Remove="Images\doctor strange.png" />
+    <None Remove="Images\GCPD.png" />
+    <None Remove="Images\iron man.png" />
+    <None Remove="Images\Menu.png" />
+    <None Remove="Images\night wing.png" />
+    <None Remove="Images\Prof K.png" />
+    <None Remove="Images\Prof X.png" />
+    <None Remove="Images\Raven.png" />
+    <None Remove="Images\scarlet witch.png" />
+    <None Remove="Images\sheed.png" />
+    <None Remove="Images\spider man.png" />
+    <None Remove="Images\wonder woman.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Images\batman.png" />
+    <Resource Include="Images\doctor strange.png" />
+    <Resource Include="Images\GCPD.png" />
+    <Resource Include="Images\iron man.png" />
+    <Resource Include="Images\Menu.png" />
+    <Resource Include="Images\night wing.png" />
+    <Resource Include="Images\Prof K.png" />
+    <Resource Include="Images\Prof X.png" />
+    <Resource Include="Images\Raven.png" />
+    <Resource Include="Images\scarlet witch.png" />
+    <Resource Include="Images\sheed.png" />
+    <Resource Include="Images\spider man.png" />
+    <Resource Include="Images\wonder woman.png" />
+  </ItemGroup>
+
+</Project>
