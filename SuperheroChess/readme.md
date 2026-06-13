@@ -1,1 +1,1 @@
-
+A C# WPF superhero-themed chess game featuring Marvel and DC characters, custom chess rules, move validation, check/checkmate detection, AI opponent support, game save/load functionality, and an interactive graphical game board.
